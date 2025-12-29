@@ -1,53 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>For You 💌</title>
-
+<meta charset="UTF-8" />
+<title>New Year Envelopes</title>
 <style>
-* {
-  box-sizing: border-box;
-}
-
 body {
-  margin: 0;
-  font-family: Arial, sans-serif;
+  font-family: "Dancing Script", cursive;
   background: #f5f5f5;
   text-align: center;
 }
 
-/* ===== TITLE ===== */
-h2 {
-  margin-top: 30px;
-}
-
-/* ===== GRID ===== */
+/* Grid */
 .grid {
   display: grid;
-  grid-template-columns: repeat(3, 140px);
-  gap: 24px;
+  grid-template-columns: repeat(3, 150px);
+  gap: 20px;
   justify-content: center;
   margin-top: 40px;
 }
 
-/* ===== ENVELOPE ===== */
+/* Envelope */
 .envelope {
-  width: 140px;
+  width: 150px;
   height: 100px;
-  background: #8ecae6;
-  border-radius: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  background: #b3e5fc;
+  border-radius: 8px;
+  position: relative;
   cursor: pointer;
+}
+
+.envelope.opened {
+  background: #e0e0e0;
 }
 
 .envelope button {
-  padding: 4px 10px;
-  cursor: pointer;
+  position: absolute;
+  top: 35%;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
-/* ===== POPUP ===== */
+/* Popup */
 .popup {
   position: fixed;
   inset: 0;
@@ -55,48 +48,26 @@ h2 {
   display: none;
   align-items: center;
   justify-content: center;
-  z-index: 9999;
+  z-index: 999;
 }
 
-.popup-content {
+.popup-image {
+  width: 340px;              /* chỉnh theo ảnh */
+  height: 480px;
+  background: url(".Codelinhtinh/Images/template1.png") center/contain no-repeat;
   position: relative;
 }
 
-/* ===== PAPER IMAGE ===== */
-.paper {
-  position: relative;
-  width: 360px;
-}
-
-.paper img {
-  width: 100%;
-  display: block;
-}
-
-/* ===== TEXT OVER IMAGE ===== */
-.paper-text {
-  position: absolute;
-  top: 90px;
-  left: 40px;
-  right: 40px;
-
-  font-family: "Georgia", serif;
-  font-size: 14px;
-  line-height: 1.6;
-  color: #3a2f2f;
-  text-align: center;
-}
-
-/* ===== CLOSE BUTTON ===== */
+/* nút đóng */
 .close {
   position: absolute;
-  top: 6px;
-  right: 8px;
+  top: 8px;
+  right: 10px;
   cursor: pointer;
+  font-size: 18px;
   background: #fff;
   border-radius: 50%;
   padding: 2px 6px;
-  font-weight: bold;
 }
 </style>
 </head>
@@ -105,39 +76,40 @@ h2 {
 
 <h2>Click an Envelope 🎉</h2>
 
-<div class="grid">
-  <div class="envelope"><button onclick="openEnvelope()">Click me</button></div>
-  <div class="envelope"><button onclick="openEnvelope()">Click me</button></div>
-  <div class="envelope"><button onclick="openEnvelope()">Click me</button></div>
-  <div class="envelope"><button onclick="openEnvelope()">Click me</button></div>
-  <div class="envelope"><button onclick="openEnvelope()">Click me</button></div>
-  <div class="envelope"><button onclick="openEnvelope()">Click me</button></div>
-  <div class="envelope"><button onclick="openEnvelope()">Click me</button></div>
-  <div class="envelope"><button onclick="openEnvelope()">Click me</button></div>
-  <div class="envelope"><button onclick="openEnvelope()">Click me</button></div>
-</div>
+<div class="grid" id="grid"></div>
 
-<!-- ===== POPUP ===== -->
+<!-- Popup -->
 <div class="popup" id="popup">
   <div class="popup-content">
-    <div class="close" onclick="closePopup()">✖</div>
-
-    <div class="paper">
-      <img src="./images/template1.png" alt="paper">
-      <div class="paper-text">
-        <strong>Happy New Year!</strong><br><br>
-        May this new year bring you fresh beginnings,
-        joyful moments, and many opportunities to grow
-        and succeed. <br><br>
-        Wishing you health, happiness, and endless smiles ✨
-      </div>
-    </div>
-
+    <span class="close" onclick="closePopup()">✖</span>
+    <p id="message">
+      Happy New Year! May this new year bring you fresh beginnings,
+      joyful moments, and many opportunities to grow and succeed.
+    </p>
   </div>
 </div>
 
 <script>
-function openEnvelope() {
+const grid = document.getElementById("grid");
+const opened = new Set();
+
+// create envelopes
+for (let i = 0; i < 9; i++) {
+  const env = document.createElement("div");
+  env.className = "envelope";
+
+  const btn = document.createElement("button");
+  btn.innerText = "Click me";
+
+  btn.onclick = () => openEnvelope(i, env);
+
+  env.appendChild(btn);
+  grid.appendChild(env);
+}
+
+function openEnvelope(index, env) {
+  opened.add(index);
+  env.classList.add("opened");a
   document.getElementById("popup").style.display = "flex";
 }
 
