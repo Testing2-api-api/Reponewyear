@@ -2,115 +2,146 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
-<title>New Year Envelopes</title>
+<title>For You 💌</title>
+
 <style>
+* {
+  box-sizing: border-box;
+}
+
 body {
+  margin: 0;
   font-family: Arial, sans-serif;
-  background: #f5f5f5;
+  background: #f6f6f6;
   text-align: center;
 }
 
-/* Grid */
+/* GRID */
 .grid {
   display: grid;
-  grid-template-columns: repeat(3, 150px);
-  gap: 20px;
+  grid-template-columns: repeat(3, 160px);
+  gap: 24px;
   justify-content: center;
-  margin-top: 40px;
+  margin-top: 50px;
 }
 
-/* Envelope */
+/* ENVELOPE */
 .envelope {
-  width: 150px;
-  height: 100px;
-  background: #b3e5fc;
-  border-radius: 8px;
-  position: relative;
+  width: 160px;
+  height: 110px;
+  background: url("images/envelope-closed.png") center/contain no-repeat;
   cursor: pointer;
 }
 
 .envelope.opened {
-  background: #e0e0e0;
+  background: url("images/envelope-open.png") center/contain no-repeat;
 }
 
-.envelope button {
-  position: absolute;
-  top: 35%;
-  left: 50%;
-  transform: translateX(-50%);
-}
-
-/* Popup */
+/* POPUP */
 .popup {
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.5);
+  background: rgba(0,0,0,0.6);
   display: none;
   align-items: center;
   justify-content: center;
+  z-index: 10;
 }
 
 .popup-content {
   background: #fff;
-  padding: 20px;
-  width: 300px;
-  border-radius: 10px;
+  width: 320px;
+  border-radius: 12px;
+  padding: 16px;
   position: relative;
+  animation: scaleIn 0.25s ease;
+}
+
+@keyframes scaleIn {
+  from { transform: scale(0.8); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
 }
 
 .close {
   position: absolute;
+  top: 6px;
   right: 10px;
-  top: 5px;
   cursor: pointer;
-  font-weight: bold;
+  font-size: 18px;
+}
+
+.popup img {
+  width: 100%;
+  margin-bottom: 12px;
+}
+
+.popup p {
+  font-size: 14px;
+  line-height: 1.4;
 }
 </style>
 </head>
 
 <body>
 
-<h2>Click an Envelope 🎉</h2>
+<h2>💌 Click an envelope</h2>
 
 <div class="grid" id="grid"></div>
 
-<!-- Popup -->
+<!-- POPUP -->
 <div class="popup" id="popup">
   <div class="popup-content">
-    <span class="close" onclick="closePopup()">✖</span>
-    <p id="message">
-      Happy New Year! May this new year bring you fresh beginnings,
-      joyful moments, and many opportunities to grow and succeed.
-    </p>
+    <div class="close" onclick="closePopup()">✖</div>
+    <img src="images/envelope-open.png" alt="opened" />
+    <p id="message"></p>
   </div>
 </div>
 
 <script>
+const messages = [
+  "Happy New Year! May this year bring you fresh beginnings and joyful moments.",
+  "Wishing you happiness, health, and success in the coming year.",
+  "May all your dreams come true this New Year 🎉",
+  "New year, new opportunities, new smiles 💖",
+  "Hope this year brings peace and positivity to your life.",
+  "Cheers to another year of growth and happiness!",
+  "May every day of this year be filled with kindness.",
+  "Sending you warm wishes for a wonderful New Year!",
+  "A new year means a new chapter. Make it amazing!"
+];
+
 const grid = document.getElementById("grid");
-const opened = new Set();
+const popup = document.getElementById("popup");
+const messageEl = document.getElementById("message");
+
+let opened = JSON.parse(localStorage.getItem("openedEnvelopes")) || [];
 
 // create envelopes
 for (let i = 0; i < 9; i++) {
   const env = document.createElement("div");
   env.className = "envelope";
 
-  const btn = document.createElement("button");
-  btn.innerText = "Click me";
+  if (opened.includes(i)) {
+    env.classList.add("opened");
+  }
 
-  btn.onclick = () => openEnvelope(i, env);
-
-  env.appendChild(btn);
+  env.onclick = () => openEnvelope(i, env);
   grid.appendChild(env);
 }
 
 function openEnvelope(index, env) {
-  opened.add(index);
+  if (!opened.includes(index)) {
+    opened.push(index);
+    localStorage.setItem("openedEnvelopes", JSON.stringify(opened));
+  }
+
   env.classList.add("opened");
-  document.getElementById("popup").style.display = "flex";
+  messageEl.innerText = messages[index];
+  popup.style.display = "flex";
 }
 
 function closePopup() {
-  document.getElementById("popup").style.display = "none";
+  popup.style.display = "none";
 }
 </script>
 
