@@ -1,1 +1,118 @@
-hello 2026
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>New Year Envelopes</title>
+<style>
+body {
+  font-family: Arial, sans-serif;
+  background: #f5f5f5;
+  text-align: center;
+}
+
+/* Grid */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 150px);
+  gap: 20px;
+  justify-content: center;
+  margin-top: 40px;
+}
+
+/* Envelope */
+.envelope {
+  width: 150px;
+  height: 100px;
+  background: #b3e5fc;
+  border-radius: 8px;
+  position: relative;
+  cursor: pointer;
+}
+
+.envelope.opened {
+  background: #e0e0e0;
+}
+
+.envelope button {
+  position: absolute;
+  top: 35%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* Popup */
+.popup {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+  display: none;
+  align-items: center;
+  justify-content: center;
+}
+
+.popup-content {
+  background: #fff;
+  padding: 20px;
+  width: 300px;
+  border-radius: 10px;
+  position: relative;
+}
+
+.close {
+  position: absolute;
+  right: 10px;
+  top: 5px;
+  cursor: pointer;
+  font-weight: bold;
+}
+</style>
+</head>
+
+<body>
+
+<h2>Click an Envelope 🎉</h2>
+
+<div class="grid" id="grid"></div>
+
+<!-- Popup -->
+<div class="popup" id="popup">
+  <div class="popup-content">
+    <span class="close" onclick="closePopup()">✖</span>
+    <p id="message">
+      Happy New Year! May this new year bring you fresh beginnings,
+      joyful moments, and many opportunities to grow and succeed.
+    </p>
+  </div>
+</div>
+
+<script>
+const grid = document.getElementById("grid");
+const opened = new Set();
+
+// create envelopes
+for (let i = 0; i < 9; i++) {
+  const env = document.createElement("div");
+  env.className = "envelope";
+
+  const btn = document.createElement("button");
+  btn.innerText = "Click me";
+
+  btn.onclick = () => openEnvelope(i, env);
+
+  env.appendChild(btn);
+  grid.appendChild(env);
+}
+
+function openEnvelope(index, env) {
+  opened.add(index);
+  env.classList.add("opened");
+  document.getElementById("popup").style.display = "flex";
+}
+
+function closePopup() {
+  document.getElementById("popup").style.display = "none";
+}
+</script>
+
+</body>
+</html>
