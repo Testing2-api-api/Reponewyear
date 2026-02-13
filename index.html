@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>3x3 Envelope Grid</title>
 
 <style>
@@ -18,10 +19,26 @@ h2 {
 /* GRID */
 .grid {
   display: grid;
-  grid-template-columns: repeat(3, 200px);
-  gap: 30px;
-  justify-content: center;
-  margin-top: 40px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+@media (max-width: 768px) {
+
+  .grid {
+    gap: 8px; /* giảm khoảng cách */
+  }
+
+  .card {
+    padding: 12px;
+    font-size: 13px;
+    min-height: 80px;
+  }
+
+  .container {
+    padding: 12px;
+  }
+
 }
 
 /* lớp rung */
