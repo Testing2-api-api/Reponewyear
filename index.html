@@ -89,11 +89,23 @@ h2 {
 
 <body>
 
-<h2>🎉 新年祝词 🎉</h2>
+<h2>🎉 新年祝词~ 🎉</h2>
 
 <div class="grid" id="grid"></div>
 
 <script>
+const titles = [
+  "🎁 Bí mật 1",
+  "💖 Điều dễ thương",
+  "🌟 Lời chúc vàng",
+  "🍀 May mắn đây!",
+  "🚀 Tăng tốc!",
+  "💰 Tài lộc nè!",
+  "🎯 Nhắm trúng rồi!",
+  "🌈 Cầu vồng kìa!",
+  "✨ Toả sáng nhé!"
+];
+
 const messages = [
   "🎉 Happy New Year!",
   "💖 Chúc bạn luôn vui vẻ!",
@@ -120,7 +132,7 @@ for (let i = 0; i < 9; i++) {
   envelope.className = "envelope";
 
   envelope.innerHTML = `
-    <div class="front">🎁 Open ${i+1}</div>
+    <div class="front">${titles[i]}</div>
     <div class="back">${messages[i]}</div>
   `;
 
