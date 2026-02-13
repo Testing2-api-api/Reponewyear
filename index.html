@@ -26,7 +26,7 @@ h2 {
 
 /* lớp rung */
 .wrapper {
-  animation: shake 0.4s infinite linear;
+  animation: shake 0.5s infinite linear;
 }
 
 /* scene chỉ giữ 3D */
@@ -52,9 +52,9 @@ h2 {
 
 /* rung */
 @keyframes shake {
-  0%   { transform: translateX(-4px); }
-  50%  { transform: translateX(4px); }
-  100% { transform: translateX(-4px); }
+  0%   { transform: rotateZ(-3deg); }
+  50%  { transform: rotateZ(3deg); }
+  100% { transform: rotateZ(-3deg); }
 }
 
 /* front & back */
