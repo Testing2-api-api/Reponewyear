@@ -2,26 +2,36 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>3D Envelope</title>
+<title>3x3 Envelope Grid</title>
 
 <style>
 body {
   background: #f5f5f5;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
   font-family: "Dancing Script", cursive;
+  text-align: center;
 }
 
-/* khung 3D */
+h2 {
+  margin-top: 30px;
+}
+
+/* GRID 3x3 */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 200px);
+  gap: 30px;
+  justify-content: center;
+  margin-top: 40px;
+}
+
+/* 3D scene */
 .scene {
-  width: 220px;
-  height: 150px;
+  width: 200px;
+  height: 140px;
   perspective: 1000px;
 }
 
-/* phong bì */
+/* envelope */
 .envelope {
   width: 100%;
   height: 100%;
@@ -31,60 +41,80 @@ body {
   cursor: pointer;
 }
 
-/* khi mở */
 .envelope.open {
   transform: rotateY(180deg);
 }
 
-/* mặt trước & sau */
+/* front & back */
 .front, .back {
   position: absolute;
   width: 100%;
   height: 100%;
-  backface-visibility: hidden;
   border-radius: 12px;
+  backface-visibility: hidden;
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 10px;
+  box-sizing: border-box;
 }
 
-/* mặt trước (phong bì) */
 .front {
   background: linear-gradient(135deg, #b3e5fc, #81d4fa);
-  font-size: 20px;
   font-weight: bold;
+  font-size: 18px;
 }
 
-/* mặt sau (note) */
 .back {
   background: white;
   transform: rotateY(180deg);
-  padding: 15px;
   box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+  font-size: 14px;
   text-align: center;
-  font-size: 16px;
 }
 </style>
 </head>
 
 <body>
 
-<div class="scene">
-  <div class="envelope" onclick="toggleEnvelope()" id="env">
-    <div class="front">
-      🎁 Click Me
-    </div>
-    <div class="back">
-      🎉 Happy New Year! <br><br>
-      Chúc bạn một năm mới đầy niềm vui,
-      thành công và thật nhiều may mắn!
-    </div>
-  </div>
-</div>
+<h2>Click an Envelope 🎉</h2>
+
+<div class="grid" id="grid"></div>
 
 <script>
-function toggleEnvelope() {
-  document.getElementById("env").classList.toggle("open");
+const messages = [
+  "🎉 Happy New Year!",
+  "💖 Chúc bạn luôn vui vẻ!",
+  "🌟 Thành công rực rỡ!",
+  "🍀 May mắn cả năm!",
+  "🚀 Bứt phá mọi giới hạn!",
+  "💰 Tiền vào như nước!",
+  "🎯 Đạt mọi mục tiêu!",
+  "🌈 Năm mới đầy màu sắc!",
+  "✨ Luôn tỏa sáng!"
+];
+
+const grid = document.getElementById("grid");
+
+for (let i = 0; i < 9; i++) {
+
+  const scene = document.createElement("div");
+  scene.className = "scene";
+
+  const envelope = document.createElement("div");
+  envelope.className = "envelope";
+
+  envelope.innerHTML = `
+    <div class="front">🎁 Open ${i+1}</div>
+    <div class="back">${messages[i]}</div>
+  `;
+
+  envelope.onclick = () => {
+    envelope.classList.toggle("open");
+  };
+
+  scene.appendChild(envelope);
+  grid.appendChild(scene);
 }
 </script>
 
