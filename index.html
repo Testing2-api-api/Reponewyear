@@ -23,22 +23,12 @@ h2 {
   gap: 20px;
 }
 
+/* Mobile */
 @media (max-width: 768px) {
-
   .grid {
-    gap: 8px; /* giảm khoảng cách */
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px; /* giảm khoảng cách cho gọn */
   }
-
-  .card {
-    padding: 12px;
-    font-size: 13px;
-    min-height: 80px;
-  }
-
-  .container {
-    padding: 12px;
-  }
-
 }
 
 /* lớp rung */
