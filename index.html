@@ -129,9 +129,18 @@ h2 {
   position: fixed;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%) scale(2);
+  transform: translate(-50%, -50%);
   z-index: 1000;
-  transition: transform 0.35s ease;
+}
+
+.wrapper.zoomed .scene {
+  width: 420px;
+  height: 300px;
+}
+
+.wrapper.zoomed .letter {
+  font-size: 20px;
+  padding: 20px;
 }
 
 .overlay {
