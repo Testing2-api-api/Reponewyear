@@ -21,14 +21,25 @@ h2 {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 20px;
+
+  max-width: 900px;   /* quan trọng */
+  margin: 0 auto;     /* căn giữa */
 }
 
 /* Mobile */
 @media (max-width: 768px) {
+
   .grid {
     grid-template-columns: repeat(2, 1fr);
-    gap: 10px; /* giảm khoảng cách cho gọn */
+    gap: 12px;
+    padding: 0 16px;  /* padding hai bên */
   }
+
+  .card {
+    min-height: 110px;
+    padding: 16px;
+  }
+
 }
 
 /* lớp rung */
