@@ -125,14 +125,14 @@ for (let i = 0; i < 9; i++) {
   `;
 
   envelope.onclick = () => {
-    envelope.classList.toggle("open");
-    wrapper.style.animation = "none";
-  };
+  envelope.classList.toggle("open");
 
-  scene.appendChild(envelope);
-  wrapper.appendChild(scene);
-  grid.appendChild(wrapper);
-}
+  if (envelope.classList.contains("open")) {
+    wrapper.style.animation = "none";
+  } else {
+    wrapper.style.animation = "shake 0.6s infinite ease-in-out";
+  }
+};
 </script>
 
 </body>
