@@ -6,7 +6,13 @@
 <title>3x3 Envelope Grid</title>
 
 <style>
+
+* {
+  box-sizing: border-box;
+}
+
 body {
+  margin: 0;
   background: #ffffff;
   font-family: "Dancing Script", cursive;
   text-align: center;
@@ -32,12 +38,8 @@ h2 {
   .grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 12px;
-    padding: 0 16px;  /* padding hai bên */
-  }
-
-  .card {
-    min-height: 110px;
-    padding: 16px;
+    padding: 0 16px;
+    max-width: 100%;
   }
 
 }
