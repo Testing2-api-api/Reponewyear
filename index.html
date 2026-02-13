@@ -134,9 +134,8 @@ h2 {
 }
 
 .wrapper.zoomed .scene {
-  width: 500px;      /* desktop */
-  max-height: 80vh;  /* không vượt màn */
-  overflow-y: auto;
+  width: 600px;
+  height: 420px;
 }
 
 .wrapper.zoomed .letter {
@@ -156,6 +155,7 @@ h2 {
 
   .wrapper.zoomed .scene {
     width: 350px;
+    height: 480px;
   }
 
   .wrapper.zoomed .letter {
@@ -222,20 +222,7 @@ for (let i = 0; i < 9; i++) {
 
   envelope.classList.add("open");
   wrapper.classList.add("zoomed");
-
   wrapper.style.animation = "none";
-
-  // 🔥 Tính chiều cao nội dung
-  const letter = wrapper.querySelector(".letter");
-
-  setTimeout(() => {
-    const contentHeight = letter.scrollHeight;
-
-    const maxHeight = window.innerHeight * 0.8; // không vượt 80% màn
-    const finalHeight = Math.min(contentHeight + 60, maxHeight);
-
-    wrapper.querySelector(".scene").style.height = finalHeight + "px";
-  }, 300);
 
   const overlay = document.createElement("div");
   overlay.className = "overlay";
@@ -244,10 +231,7 @@ for (let i = 0; i < 9; i++) {
   overlay.onclick = () => {
     wrapper.classList.remove("zoomed");
     envelope.classList.remove("open");
-
-    wrapper.querySelector(".scene").style.height = "";
     wrapper.style.animation = "shake 0.6s infinite ease-in-out";
-
     overlay.remove();
   };
 
