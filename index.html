@@ -125,14 +125,12 @@ h2 {
   text-align: center;
 }
 
-.envelope.zoomed {
+.wrapper.zoomed {
   position: fixed;
   top: 50%;
   left: 50%;
-
   transform: translate(-50%, -50%) scale(2);
   z-index: 1000;
-
   transition: transform 0.35s ease;
 }
 
@@ -197,10 +195,10 @@ for (let i = 0; i < 9; i++) {
 
   envelope.onclick = () => {
 
-  if (envelope.classList.contains("zoomed")) return;
+  if (wrapper.classList.contains("zoomed")) return;
 
   envelope.classList.add("open");
-  envelope.classList.add("zoomed");
+  wrapper.classList.add("zoomed");
   wrapper.style.animation = "none";
 
   const overlay = document.createElement("div");
@@ -208,7 +206,7 @@ for (let i = 0; i < 9; i++) {
   document.body.appendChild(overlay);
 
   overlay.onclick = () => {
-    envelope.classList.remove("zoomed");
+    wrapper.classList.remove("zoomed");
     envelope.classList.remove("open");
     wrapper.style.animation = "shake 0.6s infinite ease-in-out";
     overlay.remove();
