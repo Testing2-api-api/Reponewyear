@@ -129,16 +129,19 @@ h2 {
   position: fixed;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%) scale(1.8) rotateY(180deg);
-  z-index: 999;
-  transition: transform 0.4s ease;
+
+  transform: translate(-50%, -50%) scale(2);
+  z-index: 1000;
+
+  transition: transform 0.35s ease;
 }
 
 .overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.4);
-  z-index: 998;
+  background: rgba(0,0,0,0.5);
+  backdrop-filter: blur(4px);
+  z-index: 999;
 }
 </style>
 </head>
@@ -194,26 +197,23 @@ for (let i = 0; i < 9; i++) {
 
   envelope.onclick = () => {
 
-  const isOpen = envelope.classList.contains("zoomed");
+  if (envelope.classList.contains("zoomed")) return;
 
-  if (!isOpen) {
+  envelope.classList.add("open");
+  envelope.classList.add("zoomed");
+  wrapper.style.animation = "none";
 
-    envelope.classList.add("open");
-    envelope.classList.add("zoomed");
-    wrapper.style.animation = "none";
+  const overlay = document.createElement("div");
+  overlay.className = "overlay";
+  document.body.appendChild(overlay);
 
-    const overlay = document.createElement("div");
-    overlay.className = "overlay";
-    document.body.appendChild(overlay);
+  overlay.onclick = () => {
+    envelope.classList.remove("zoomed");
+    envelope.classList.remove("open");
+    wrapper.style.animation = "shake 0.6s infinite ease-in-out";
+    overlay.remove();
+  };
 
-    overlay.onclick = () => {
-      envelope.classList.remove("zoomed");
-      envelope.classList.remove("open");
-      wrapper.style.animation = "shake 0.6s infinite ease-in-out";
-      overlay.remove();
-    };
-
-  }
 };
 
 
