@@ -49,8 +49,9 @@ h2 {
 
 /* hiệu ứng lắc */
 @keyframes shake {
-  0% { transform: rotateZ(-4deg); }
-  100% { transform: rotateZ(4deg); }
+  0%   { transform: translateX(-4px); }
+  50%  { transform: translateX(4px); }
+  100% { transform: translateX(-4px); }
 }
 
 /* front & back */
@@ -119,6 +120,7 @@ for (let i = 0; i < 9; i++) {
 
   envelope.onclick = () => {
     envelope.classList.toggle("open");
+    envelope.parentElement.style.animation = "none";
   };
 
   scene.appendChild(envelope);
