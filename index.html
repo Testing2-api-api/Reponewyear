@@ -29,6 +29,7 @@ h2 {
   width: 200px;
   height: 140px;
   perspective: 1000px;
+  animation: shake 0.4s infinite linear;
 }
 
 /* envelope */
@@ -40,10 +41,6 @@ h2 {
   transition: transform 0.8s;
   cursor: pointer;
 
-  /* lắc nhẹ */
-  animation: shake 0.7s infinite ease-in-out;
-}
-
 /* khi mở */
 .envelope.open {
   transform: rotateY(180deg);
@@ -52,9 +49,8 @@ h2 {
 
 /* hiệu ứng lắc */
 @keyframes shake {
-  0% { transform: rotateZ(-5deg); }
-  50% { transform: rotateZ(5deg); }
-  100% { transform: rotateZ(-5deg); }
+  0% { transform: rotateZ(-4deg); }
+  100% { transform: rotateZ(4deg); }
 }
 
 /* front & back */
