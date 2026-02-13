@@ -15,7 +15,7 @@ h2 {
   margin-top: 30px;
 }
 
-/* GRID 3x3 */
+/* GRID */
 .grid {
   display: grid;
   grid-template-columns: repeat(3, 200px);
@@ -39,10 +39,24 @@ h2 {
   transform-style: preserve-3d;
   transition: transform 0.8s;
   cursor: pointer;
+
+  /* lắc nhẹ */
+  animation: shake 2.5s infinite ease-in-out;
 }
 
+/* khi mở */
 .envelope.open {
   transform: rotateY(180deg);
+  animation: none; /* dừng lắc */
+}
+
+/* hiệu ứng lắc */
+@keyframes shake {
+  0% { transform: rotateZ(0deg); }
+  25% { transform: rotateZ(2deg); }
+  50% { transform: rotateZ(0deg); }
+  75% { transform: rotateZ(-2deg); }
+  100% { transform: rotateZ(0deg); }
 }
 
 /* front & back */
