@@ -43,14 +43,21 @@ h2 {
     grid-template-columns: repeat(2, 1fr);
     gap: 12px;
 
-    max-width: 900px;   /* GIỮ NGUYÊN */
-    margin: 0 auto;     /* GIỮ NGUYÊN */
+    max-width: 100%;     /* bỏ 900px */
+    padding: 0 16px;     /* padding 2 bên */
+    margin: 0 auto;
   }
-    
-    .scene {
+
+  .wrapper {
+    display: flex;
+    justify-content: center;   /* căn giữa từng phong thư */
+  }
+
+  .scene {
     width: 140px;
-    height: 98px;   /* giữ đúng tỉ lệ 200:140 */
+    height: 98px;
   }
+
 }
 
 /* lớp rung */
