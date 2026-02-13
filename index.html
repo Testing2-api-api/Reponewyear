@@ -24,12 +24,16 @@ h2 {
   margin-top: 40px;
 }
 
-/* 3D scene */
+/* lớp rung */
+.wrapper {
+  animation: shake 0.4s infinite linear;
+}
+
+/* scene chỉ giữ 3D */
 .scene {
   width: 200px;
   height: 140px;
   perspective: 1000px;
-  animation: shake 0.4s infinite linear;
 }
 
 /* envelope */
@@ -42,13 +46,11 @@ h2 {
   cursor: pointer;
 }
 
-/* khi mở */
 .envelope.open {
   transform: rotateY(180deg);
-  animation: none; /* dừng lắc */
 }
 
-/* hiệu ứng lắc */
+/* rung */
 @keyframes shake {
   0%   { transform: translateX(-4px); }
   50%  { transform: translateX(4px); }
@@ -108,6 +110,9 @@ const grid = document.getElementById("grid");
 
 for (let i = 0; i < 9; i++) {
 
+  const wrapper = document.createElement("div");
+  wrapper.className = "wrapper";
+
   const scene = document.createElement("div");
   scene.className = "scene";
 
@@ -121,11 +126,12 @@ for (let i = 0; i < 9; i++) {
 
   envelope.onclick = () => {
     envelope.classList.toggle("open");
-    envelope.parentElement.style.animation = "none";
+    wrapper.style.animation = "none";
   };
 
   scene.appendChild(envelope);
-  grid.appendChild(scene);
+  wrapper.appendChild(scene);
+  grid.appendChild(wrapper);
 }
 </script>
 
