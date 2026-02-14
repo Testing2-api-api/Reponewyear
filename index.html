@@ -112,9 +112,16 @@ h2 {
 }
 
 .back {
-  display: block;
-  text-align: left;
-  line-height: 1.7;
+  background: white;
+  transform: rotateY(180deg);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+  font-size: 14px;
+
+  display: flex;                /* ⭐ quan trọng */
+  justify-content: center;      /* căn giữa ngang */
+  align-items: center;          /* căn giữa dọc */
+  text-align: center;           /* căn chữ giữa */
+  padding: 30px;
 }
 
 .front {
