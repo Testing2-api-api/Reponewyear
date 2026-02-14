@@ -63,6 +63,7 @@ h2 {
 /* lớp rung */
 .wrapper {
   animation: shake 0.5s infinite linear;
+  transition: transform 0.3s ease;
 }
 
 /* scene chỉ giữ 3D */
@@ -247,15 +248,15 @@ for (let i = 0; i < 9; i++) {
 
   overlay.onclick = () => {
 
-  // đóng trước
+  // Thu nhỏ ngay lập tức
+  wrapper.classList.remove("zoomed");
+
+  // Đồng thời đóng thư
   envelope.classList.remove("open");
 
-  // chờ flip xong rồi mới bỏ zoom
-  setTimeout(() => {
-    wrapper.classList.remove("zoomed");
-    wrapper.style.animation = "shake 0.6s infinite ease-in-out";
-    overlay.remove();
-  }, 600); // phải khớp với transition 0.6s
+  wrapper.style.animation = "shake 0.6s infinite ease-in-out";
+
+  overlay.remove();
 };
 
 };
