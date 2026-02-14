@@ -166,19 +166,27 @@ h2 {
 
 @media (max-width: 768px) {
 
+  .wrapper.zoomed {
+    position: fixed;
+    top: 5vh;              /* ⬅️ neo lên trên thay vì center */
+    left: 50%;
+    transform: translateX(-50%);
+    max-height: 90vh;      /* ⬅️ không vượt màn hình */
+    overflow-y: auto;      /* ⬅️ nếu quá dài thì scroll toàn popup */
+  }
+
   .wrapper.zoomed .scene {
     width: 90vw;
-    height: auto;        /* ⬅️ cho giãn theo nội dung */
+    height: auto;
     aspect-ratio: auto;
   }
 
   .wrapper.zoomed .envelope {
-    height: auto;          /* 🔥 thêm dòng này */
+    height: auto;
   }
 
-
   .wrapper.zoomed .back {
-    display: block;      /* ⬅️ bỏ flex để khỏi ép giữa */
+    display: block;
   }
 
 }
