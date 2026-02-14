@@ -131,7 +131,10 @@ h2 {
   transform: rotateY(180deg);
   box-shadow: 0 10px 25px rgba(0,0,0,0.2);
   font-size: 14px;
-  text-align: center;
+  text-align: left;
+
+  overflow-y: auto;      /* CHO CUỘN */
+  padding: 20px;         /* GIỮ PADDING CHO ĐẸP */
 }
 
 .wrapper.zoomed {
@@ -144,7 +147,8 @@ h2 {
 
 .wrapper.zoomed .scene {
   width: 600px;
-  height: 420px;
+  max-height: 70vh;   /* GIỚI HẠN 70% màn */
+  height: auto;       /* CHO TỰ ĐỘNG CAO THEO NỘI DUNG */
 }
 
 .wrapper.zoomed .letter {
@@ -160,12 +164,13 @@ h2 {
   z-index: 999;
 }
 
-@media (max-width: 768px) {
-
+@@media (max-width: 768px) {
   .wrapper.zoomed .scene {
     width: 350px;
-    height: 480px;
+    max-height: 70vh;
+    height: auto;
   }
+}
 
   .wrapper.zoomed .letter {
     font-size: 18px;
