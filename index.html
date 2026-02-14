@@ -177,8 +177,9 @@ h2 {
   }
 
   .wrapper.zoomed .back {
-    justify-content: flex-start;  /* 🔥 không ép giữa */
-    overflow-y: auto;             /* 🔥 scroll khi dài */
+    display: block;                 /* 🔥 bỏ flex */
+    padding: 20px;
+    overflow-y: auto;
     -webkit-overflow-scrolling: touch;
   }
 
