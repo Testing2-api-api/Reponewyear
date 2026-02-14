@@ -101,11 +101,20 @@ h2 {
   height: 100%;
   border-radius: 12px;
   backface-visibility: hidden;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.front {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 10px;
-  box-sizing: border-box;
+}
+
+.back {
+  display: block;
+  text-align: left;
+  line-height: 1.7;
 }
 
 .front {
@@ -122,9 +131,7 @@ h2 {
   transform: rotateY(180deg);
   box-shadow: 0 10px 25px rgba(0,0,0,0.2);
   font-size: 14px;
-  text-align: left;
-  line-height: 1.6;
-  word-break: break-word;
+  text-align: center;
 }
 
 .wrapper.zoomed {
