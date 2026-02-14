@@ -166,14 +166,20 @@ h2 {
 
 @media (max-width: 768px) {
 
-  .wrapper.zoomed .scene {
-    width: 350px;
-    height: 480px;
+  .wrapper.zoomed {
+    width: 90vw;
+    max-height: 85vh;        /* 🔥 giới hạn theo màn hình */
   }
 
-  .wrapper.zoomed .letter {
-    font-size: 18px;
-    padding: 16px;
+  .wrapper.zoomed .scene {
+    width: 100%;
+    height: 100%;
+  }
+
+  .wrapper.zoomed .back {
+    justify-content: flex-start;  /* 🔥 không ép giữa */
+    overflow-y: auto;             /* 🔥 scroll khi dài */
+    -webkit-overflow-scrolling: touch;
   }
 
 }
