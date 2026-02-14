@@ -109,26 +109,12 @@ h2 {
   display: flex;
   justify-content: center;
   align-items: center;
-}
 
-.back {
-  background: white;
-  transform: rotateY(180deg);
-  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-  font-size: 14px;
-
-  display: flex;                /* ⭐ quan trọng */
-  justify-content: center;      /* căn giữa ngang */
-  align-items: center;          /* căn giữa dọc */
-  text-align: center;           /* căn chữ giữa */
-  padding: 30px;
-}
-
-.front {
   background-image: url("Images/envelop.png");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+
   font-weight: bold;
   font-size: 18px;
 }
@@ -138,7 +124,17 @@ h2 {
   transform: rotateY(180deg);
   box-shadow: 0 10px 25px rgba(0,0,0,0.2);
   font-size: 14px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+}
+
+.content {
+  max-width: 500px;
   text-align: center;
+  line-height: 1.8;
 }
 
 .wrapper.zoomed {
@@ -229,7 +225,11 @@ for (let i = 0; i < 9; i++) {
 
   envelope.innerHTML = `
     <div class="front">${titles[i]}</div>
-    <div class="back">${messages[i]}</div>
+    <div class="back">
+  <div class="content">
+    ${messages[i]}
+  </div>
+</div>
   `;
 
   envelope.onclick = () => {
