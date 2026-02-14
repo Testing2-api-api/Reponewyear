@@ -167,13 +167,18 @@ h2 {
 @media (max-width: 768px) {
 
   .wrapper.zoomed .scene {
-    width: 350px;
-    height: 480px;
+    width: 90vw;
+    height: auto;        /* ⬅️ cho giãn theo nội dung */
+    aspect-ratio: auto;
   }
 
-  .wrapper.zoomed .letter {
-    font-size: 18px;
-    padding: 16px;
+  .wrapper.zoomed .envelope {
+    height: auto;          /* 🔥 thêm dòng này */
+  }
+
+
+  .wrapper.zoomed .back {
+    display: block;      /* ⬅️ bỏ flex để khỏi ép giữa */
   }
 
 }
